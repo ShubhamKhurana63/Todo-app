@@ -10,7 +10,7 @@ var { user } = require('./models/user.js');
 var { ObjectID } = require('mongodb');
 
 
-const port=process.env.port || 3000;
+const port=process.env.PORT || 3000;
 
 
 var app = express();
