@@ -3,15 +3,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 
-
-
-
 //local imports
 var { mongoose } = require('./db/mongoose.js')
 var { Todo } = require('./models/todo.js');
 var { user } = require('./models/user.js');
-
-
 
 
 var app = express();
@@ -35,4 +30,5 @@ console.log(req.body);
         })
 })
 
+module.exports={app};
 app.listen(3000);
