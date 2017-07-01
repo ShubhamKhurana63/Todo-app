@@ -9,6 +9,10 @@ var { Todo } = require('./models/todo.js');
 var { user } = require('./models/user.js');
 
 
+
+
+
+
 var app = express();
 app.use(bodyParser.json());
 
@@ -24,7 +28,7 @@ app.post('/todos', (req, res) => {
     })
 
     todo.save().then((doc) => {
-        res.send({doc});
+        res.send(doc);
     }, (err) => {
         res.status(400).send(err);
     })
