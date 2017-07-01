@@ -15,20 +15,37 @@ app.use(bodyParser.json());
 
 app.post('/todos', (req, res) => {
 
-console.log(req.body);
+    console.log(req.body);
 
     var todo = new Todo({
         text: req.body.text,
-        isCompleted:req.body.isCompleted,
-        completeAt:req.body.completeAt
+        isCompleted: req.body.isCompleted,
+        completeAt: req.body.completeAt
     })
 
     todo.save().then((doc) => {
-        res.send(doc);
+        res.send({doc});
     }, (err) => {
-            res.status(400).send(err);
-        })
+        res.status(400).send(err);
+    })
 })
 
-module.exports={app};
+app.get('/todos', (req, res) => {
+    Todo.find().then((doc) => {
+        res.status(200).send(doc);
+    }, (err) => {
+        res.status(400).send(err);
+    })
+})
+
+
+
+
+
+
+
+
+
+
+module.exports = { app };
 app.listen(3000);
