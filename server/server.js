@@ -18,15 +18,12 @@ app.use(bodyParser.json());
 
 
 app.post('/todos', (req, res) => {
-
     console.log(req.body);
-
     var todo = new Todo({
         text: req.body.text,
         isCompleted: req.body.isCompleted,
         completeAt: req.body.completeAt
     })
-
     todo.save().then((doc) => {
         res.send(doc);
     }, (err) => {
@@ -61,9 +58,7 @@ app.get('/todos/:id', (req, res) => {
         }
         res.status(200).send({response});
     }, (error) => {
-
             res.status(400).send();
-
         })
 })
 
