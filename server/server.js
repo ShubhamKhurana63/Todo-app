@@ -1,7 +1,7 @@
 //library imports
 var express = require('express');
 var bodyParser = require('body-parser');
-
+ var _=require('lodash');
 
 //local imports
 var { mongoose } = require('./db/mongoose.js')
@@ -77,6 +77,33 @@ app.delete('/todos/:id', (req, res) => {
         res.status(400).send();
     })
 })
+
+app.patch('/todos/:id', (req, res) => {
+    var id = req.params.id;
+    var body = _.pick(req.body,['text','isCompleted']);
+    if (!_.isBoolean(body.isCompleted) && body.isCompleted) {
+    body.completeAt=new Date().getTime();
+}else
+{
+    body.completeAt=null;
+    body.isCompleted=false;
+}
+Todo.findByIdAndUpdate(id,{$set:body},{new:true}).then((body)=>
+{
+if(!body)
+{
+res.status(404).send();
+}
+res.send(body);
+}).catch((e)=>
+{
+    res.status(400).send();;
+})
+});
+
+
+
+
 
 
 module.exports = { app };
