@@ -90,10 +90,7 @@ describe('GET /todos/:id', () => {
     it('should get a todo based on id', (done) => {
         request(app).get(`/todos/${todos[0]._id.toHexString}`).expect(200).expect((res) => {
             expect(res.body.response.text).toBe(todos[0].text);
-
         }).end(done());
-
-
     })
 
 
@@ -102,19 +99,36 @@ describe('GET /todos/:id', () => {
             done();
         })
     })
-
-    // it('resource not found', (done) => {
-    //    var hexId=new ObjectID().toHexString;
-    //    console.log(hexId);
-    //            request(app).get(`/todos/${hexId}`).expect(404).end(() => {
-    //         done();
-    //     })
-    // })
-
-
-
-
 })
 
+// describe('DELETE /todos/:id', () => {
+//     it('should delete the data for an id', (done) => {
+//        // var id = ();
+//         //console.log('tracking===================id');
+//       //  console.log(id);
+//         request(app).delete(`/todos/${todos[1]._id.toHexString()}`).expect(200).expect((res) => {
+//         console.log("====================track the response=====================");
+//         console.log(res);
+//             expect(res.body._id).toBe(todos[1]._id.toHexString());
+//         }).end((err, res) => {
+//             if (err) {
+//                 return done(err);
+//             }
+//         Todo.findById(todos[1]._id.toHexString()).then((todo)=>
+//         {
+//         expect(todo).toNotExist();
+//         done();
+//         }
+//         ).catch((err)=>
+//         {
+//             done(err);
+//         })
+//     })
+// })
+//     it('should return 404 for an invalid  id', (done) => {
+//         request(app).delete(`todos/123`).expect(404).end(() => {
+//             done();
+//         });
+//     })
 
-
+// });

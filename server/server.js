@@ -63,7 +63,7 @@ app.get('/todos/:id', (req, res) => {
 })
 
 
-app.delete('/todo/:id', (req, res) => {
+app.delete('/todos/:id', (req, res) => {
     var id = req.params.id;
     if (!ObjectID.isValid(id)) {
         return res.status(404).send();
@@ -72,7 +72,7 @@ app.delete('/todo/:id', (req, res) => {
         if (!body) {
             return res.status(404).send();
         }
-        res.status(200).send(body);
+         res.status(200).send(body);
     }).catch((err) => {
         res.status(400).send();
     })
