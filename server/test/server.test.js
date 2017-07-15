@@ -132,3 +132,42 @@ describe('GET /todos/:id', () => {
 //     })
 
 // });
+
+
+describe('PATCH /todos/:id', () => {
+    
+    it('for isComp-leted true', (done) => {
+    // var request={};
+    // request.text="cool text";
+    // request.isCompleted=true;
+        request(app).patch(`/todos/${todos[0]._id.toHexString}`).send({text:"cooooool",isCompleted:true}).expect(200).expect((res) => {
+        expect(res.body.text).toBe("cooooool");
+        expect(res.body.isCompleted).toBe(true);
+        expect(res.body.completedAt).toBeA('number');    
+    }).end(done());
+})
+
+// it('for isComp-leted false', (done) => {
+//     // var request={};
+//     // request.text="cool text";
+//     // request.isCompleted=true;
+//         request(app).patch(`/todos/${todos[0]._id.toHexString}`).send({text:"cooooool",isCompleted:false}).expect(200).expect((res) => {
+//         expect(res.body.text).toBe("cooooool");
+//         expect(res.body.isCompleted).toBe(false);
+//         expect(res.body.completedAt).toNotExist();
+//     }).end(done());
+//     })
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
